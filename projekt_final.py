@@ -1,24 +1,30 @@
+
+
+print("\nHi, welcome to the text analyser programme. \n\nPlease log in:")
+
 def main():
-    oddelovac = "=" * 40
+    oddelovac = "=" * 60
 
     print(oddelovac)
-    print("Hi, welcome to the text analyser programme. \nPlease log in:")
+    login = input("Your nickname: ")
+    print(oddelovac)
+    password = input("Your password: ")
     print(oddelovac)
 
-    login = input("Please enter your nickname: ")
-    password = input("Please enter your password: ")
-    print(oddelovac)
-    credentials(login, password)
-    select_text = int(input("We have three texts to be analyzed.\nEnter a number between 1 and 3:"))
-    print(oddelovac)
-    choose_text(select_text)
-    words = str(choose_text(select_text))
-    interpunctionless = str(words.strip(","))
-    no_dots = str(interpunctionless.strip(".'="))
-    number_words = no_dots.split()
-    stats(number_words)
-    print(oddelovac)
+    if credentials(login, password):
+        print(oddelovac)
+        select_text = int(input("We have three texts to be analyzed.\nChoose the text by typing a number from 1 to 3:"))
+        print(oddelovac)
+        choose_text(select_text)
+        words = str(choose_text(select_text))
+        interpunctionless = str(words.strip(","))
+        no_dots = str(interpunctionless.strip(".'="))
+        number_words = no_dots.split()
+        stats(number_words)
+        print(oddelovac)
 
+    else:
+        main()
 
 def credentials(login, password):
     registered_users = {"bob": "123", "ann": "pass123", "mike": "password123", "liz": "pass123"}
@@ -27,10 +33,12 @@ def credentials(login, password):
         n += 1
         if i == login and p == password:
             print("You are successfully logged in!")
-            break
+            return True
+
         elif (n >= len(registered_users)):
-            print("Your credentials are not correct.")
-            break
+            print("Your credentials are not correct. Please try it again.")
+            return False
+
         else:
             pass
 
@@ -44,6 +52,7 @@ def choose_text(select_text):
 def stats(number_words):
     total_words = []
     numbers = []
+    oddelovac = "=" * 60
 
     for i in number_words:
         if i.isnumeric():
@@ -73,13 +82,12 @@ def stats(number_words):
     title_words = len(title)
     upper_words = len(upper)
 
-    print(f"There are {all_words} words in the selected text.\n"
-          f"There are {all_numbers} numeric strings.\n"
-          f"There are {title_words} title case words.\n"
-          f"There are {smaller_words} lowercase words.\n"
-          f"There are {upper_words} uppercase words. ")
 
-    print(total_words)
+    print(f"This text includes {all_words} words in total.\n"
+          f"This text includes {all_numbers} numeric strings.\n"
+          f"This text includes {title_words} title case words.\n"
+          f"This text includes {smaller_words} lowercase words.\n"
+          f"This text includes {upper_words} uppercase words. ")
 
     letter1 = 0
     letter2 = 0
@@ -113,7 +121,6 @@ def stats(number_words):
             letter5 += 1
 
         elif len(letter) == 6:
-            print(len(letter))
             letter6 += 1
 
         elif len(letter) == 7:
@@ -139,26 +146,28 @@ def stats(number_words):
         else:
             pass
 
-    print(f"1 letter word is in the text {letter1}x\n"
-          f"2 letter word is in the text {letter2}x\n"
-          f"3 letter word is in the text {letter3}x\n"
-          f"4 letter word is in the text {letter4}x\n"
-          f"5 letter word is in the text {letter5}x\n"
-          f"6 letter word is in the text {letter6}x\n"
-          f"7 letter word is in the text {letter7}x\n"
-          f"8 letter word is in the text {letter8}x\n"
-          f"9 letter word is in the text {letter9}x\n"
-          f"10 letter word is in the text {letter10}x\n"
-          f"11 letter word is in the text {letter11}x\n"
-          f"12 letter word is in the text {letter12}x\n"
-          f"13 letter word is in the text {letter13}x\n"
+    print(oddelovac)
+    print(f"One letter word is in the text {letter1}x\n"
+          f"Two letter word is in the text {letter2}x\n"
+          f"Three letter word is in the text {letter3}x\n"
+          f"Four letter word is in the text {letter4}x\n"
+          f"Five letter word is in the text {letter5}x\n"
+          f"Six letter word is in the text {letter6}x\n"
+          f"Seven letter word is in the text {letter7}x\n"
+          f"Eight letter word is in the text {letter8}x\n"
+          f"Nine letter word is in the text {letter9}x\n"
+          f"Ten letter word is in the text {letter10}x\n"
+          f"Eleven letter word is in the text {letter11}x\n"
+          f"Twelve letter word is in the text {letter12}x\n"
+          f"Thirteen letter word is in the text {letter13}x\n"
           )
 
     for i in range(0, len(numbers)):
         numbers[i] = int(numbers[i])
         total_numbers = sum(map(int, numbers))
 
-    print(f"If we sum all the numbers in this text, we would get : {total_numbers} ")
+    print(oddelovac)
+    print(f"The sum of all the numbers in this text is: {total_numbers} ")
 
-# 7 Program spočítá součet všech čísel v textu
+
 main()
