@@ -167,7 +167,7 @@ def stats(number_words):
         total_numbers = sum(map(int, numbers))
 
     print(oddelovac)
-    print(f"The sum of all the numbers in this text is: {total_numbers} ")
+    print(f"The sum of all numbers in this text is: {total_numbers} ")
 
 
 main()
